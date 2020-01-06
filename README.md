@@ -13,8 +13,4 @@ Assuming your PC can execute Powershell scripts, just double click on the `windo
 
 If it doesn't work for you, please file an issue.
 
-<sup>*We use `c:\wc` because otherwise paths are becoming too long, and the tools choke on this.*</sup>
-
-### Rationale
-Being able to debug the webrtc native code was required for our [WebRTC .NET core](https://github.com/WonderMediaProductions/webrtc-dotnet-core) project
-
+<sup>*For build used `c:\wc.XXX` folder (where XXX - webrtc branch name), because otherwise paths are becoming too long, and the tools choke on this.*</sup>
