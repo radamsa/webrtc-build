@@ -1,11 +1,11 @@
 @echo off
 
 REM Because of paths becoming too long in Windows/Python, we clone the webrtc code in c:\wc
-set "CLONE_DIR=c:\wc"
 set "TOOLS_DIR=%localappdata%\WMP\depot_tools"
 set "BATCH_DIR=%~dp0%"
 set "OLD_PATH=%PATH%"
-set "WEBRTC_BRANCH=m73"
+set "WEBRTC_BRANCH=m79"
+set "CLONE_DIR=c:\wc.%WEBRTC_BRANCH%"
 
 REM H264 support can only be compiled with clang, not MSVC. 
 REM Downside is source debugging in Visual Studio is not yet suported when using clang :(
@@ -92,6 +92,10 @@ echo ----------------------------------------------------------------
 cd /d %CLONE_DIR%
 if errorlevel 1 goto :error
 
+echo Setup custom build config...
+copy %BATCH_DIR%\BUILD.gn.%WEBRTC_BRANCH% %CLONE_DIR%\src\build\config\win\BUILD.gn 
+if errorlevel 1 goto :error
+
 echo Generating debug build script, H264=%h264%...
 
 if %h264%==1 (
@@ -146,7 +150,7 @@ echo ----------------------------------------------------------------
 
 echo Copying API...
 cd /d %CLONE_DIR%
-call %BATCH_DIR%\copy_webrtc_API.bat %CLONE_DIR% %h264%
+call %BATCH_DIR%\copy_webrtc_API.bat %CLONE_DIR% %h264% %WEBRTC_BRANCH%
 if errorlevel 1 goto :error
 
 :done

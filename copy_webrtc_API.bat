@@ -6,15 +6,18 @@ REM so we have to add more include files :(
 
 set "out=%1"
 set "h264=%2"
+set "branch=%3"
 set "src=%out%\src"
 
 set "batchDir=%~dp0%"
-set "lib=%batchDir%lib"
-set "include=%batchDir%include"
+set "lib=%batchDir%%branch%\lib"
+set "include=%batchDir%%branch%\include"
 
 rd /s /q "%include%"
+md %lib%
 
-echo Copying to %include%, H264=%h264%
+echo Copying branch=%branch%, H264=%h264%
+echo Copying to %lib%
 
 if %h264%==1 then (
     xcopy /y /i /d %out%\windows_clang_debug_x64\obj\webrtc.lib    %lib%\windows_debug_x64\
@@ -23,6 +26,8 @@ if %h264%==1 then (
     xcopy /y /i /d %out%\windows_msvc_debug_x64\obj\webrtc.lib    %lib%\windows_debug_x64\
     xcopy /y /i /d %out%\windows_msvc_release_x64\obj\webrtc.lib  %lib%\windows_release_x64\
 )
+
+echo Copying to %include%
 
 xcopy /y /s /i /d %src%\api\*.h                          %include%\webrtc\api\
 
