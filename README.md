@@ -9,8 +9,8 @@ By default the Microsoft Visual C++ compiler is used (Visual Studio 2017 require
 Required module win32file. [Fix description](https://stackoverflow.com/questions/55551188/python-importerror-no-module-named-win32file). Must be installed in python come with Google depot_tools.
 
 ### Building from scratch
-Assuming your PC can execute Powershell scripts, just double click on the `windows_build.bat` file. This should create all files in `c:\wc`, and update the `include` and `lib` folders in this cloned repo
+Assuming your PC can execute Powershell scripts, just double click on the `windows_build.bat` file. This should create all files in `c:\wc.XXX`, and create `include` and `lib` folders in folder *XXX* inside this cloned repo (where *XXX* - webrtc branch name).
 
 If it doesn't work for you, please file an issue.
 
-<sup>*For build used `c:\wc.XXX` folder (where XXX - webrtc branch name), because otherwise paths are becoming too long, and the tools choke on this.*</sup>
+<sup>*For build used `c:\wc.XXX` folder, because otherwise paths are becoming too long, and the tools choke on this.*</sup>
